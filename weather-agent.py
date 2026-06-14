@@ -52,15 +52,15 @@ agent = create_agent(
 
 config = {
         'configurable': {
-            'thread_id': 1
+            'thread_id': "1"
             }
         }
 
-res = agent.invoke({
+agent.invoke({
     'messages': [
         {
             'role': 'user',
-            'content': 'What is the current weather in Geneve, Switzerland?'
+            'content': 'What is the current weather?'
             }
         ]
     },
@@ -68,4 +68,17 @@ res = agent.invoke({
     context = Context(user_id='user_1')
 )
 
-print(res['structured_response'])
+
+res = agent.invoke({
+    'messages': [
+        {
+            'role': 'user',
+            'content': 'And is this usual?'
+            }
+        ]
+    },
+    config = config,
+    context = Context(user_id='user_1')
+)
+
+print(res['messages'][-1].content)

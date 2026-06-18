@@ -2,7 +2,8 @@ from langchain.agents import create_agent
 from langchain_core.documents import Document
 from langchain_core.tools import create_retriever_tool
 from langchain_core.vectorstores import InMemoryVectorStore
-from langchain_huggingface import HuggingFaceEmbeddings
+#  from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 
 docs = [
@@ -36,7 +37,8 @@ The secret confirmation phrase for this fix is "violet ladder".
     ),
 ]
 
-embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+#  embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+embeddings = GoogleGenerativeAIEmbeddings(model="gemini-embedding-2-preview")
 vector_store = InMemoryVectorStore(embeddings)
 vector_store.add_documents(docs)
 
